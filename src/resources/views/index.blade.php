@@ -12,13 +12,13 @@
 </div>
 
 <div class="work__content">
-    <form class="work-form" action="{{ route('work/start') }}" method="post">
+    <form class="work-form" action="" method="post">
         @csrf
         <div class="work-form__item">
             <button class="form__item-button" type="submit" name="work-start">勤務開始</button>
         </div>
     </form>
-    <form class="work-form" action="{{ route('work/end') }}" method="post">
+    <form class="work-form" action="" method="post">
         @csrf
         <div class="work-form__item">
             <button class="form__item-button" type="submit" name="work-end">勤務終了</button>
@@ -27,13 +27,13 @@
 </div>
 
 <div class="break__content">
-    <form class="break-form" action="{{ route('break/start') }}" mathod="post">
+    <form class="break-form" action="" mathod="post">
         @csrf
         <div class="break-form__item">
             <button class="form__item-button" type="submit" name="break-start">休憩開始</button>
         </div>
     </form>
-    <form class="break-form" action="{{ route('break/end') }}" method="post">
+    <form class="break-form" action="" method="post">
         @csrf 
         <div class="break-form__item">
             <button class="form__item-button" type="submit" name="break/end">休憩終了</button>

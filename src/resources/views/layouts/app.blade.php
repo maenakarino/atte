@@ -16,15 +16,15 @@
             @yield('link')
         </div>
         <div class="header__right">
-            <h1 class="header__right-heading">
+            <p class="header__right-heading">
                 <a class="header__item-link" href="/">ホーム</a>
-            </h1>
-            <h1 class="header__right-heading">
+            
+            
                 <a class="header__item-link" href="/">日付一覧</a>
-            </h1>
-            <h1 class="header__right-heading">
+            
+            
                 <a class="header__item-link" href="/">ログアウト</a>
-            </h1>
+            </p>
         </div>
     </header>
 
@@ -32,7 +32,13 @@
         @yield('content')
     </main>
 
-
-    
+    <footer>
+        <div class="footer__item">
+            <small class="footer__text">
+                Atte,inc.
+            </small>
+        </div>
+    </footer>
+  
 </body>
 </html>
