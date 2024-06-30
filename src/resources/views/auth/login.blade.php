@@ -11,8 +11,8 @@
         <form class="login-form__form" action="/login" method="post">
             @csrf
             <div class="login-form__group">
-                <label class="login-form__label" for="email">メールアドレス</label>
-                <input class="login-form__input" type="mail" name="email" id="email" placeholder="例: test@example.com">
+                <label class="login-form__label" for="email"></label>
+                <input class="login-form__input" type="mail" name="email" id="email" placeholder="メールアドレス">
                 <p class="register-form__error-message">
                     @error('email')
                     {{ $message }}
@@ -20,8 +20,8 @@
                 </p>
             </div>
             <div class="login-form__group">
-                <label class="login-form__label" for="password">パスワード</label>
-                <input class="login-form__input" type="password" name="password" id="password" placeholder="例: coachtech1106">
+                <label class="login-form__label" for="password"></label>
+                <input class="login-form__input" type="password" name="password" id="password" placeholder="パスワード">
                 <p>
                     @error('password')
                     {{ $message }}

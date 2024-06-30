@@ -11,8 +11,8 @@
         <form class="register-form__form" action="/register" method="post">
             @csrf
             <div class="register-form__group">
-                <label class="register-form__label" for="name">お名前</label>
-                <input class="register-form__input" type="text" name="name" id="name" placeholder="例：山田 太郎">
+                <label class="register-form__label" for="name"></label>
+                <input class="register-form__input" type="text" name="name" id="name" placeholder="名前">
                 <p class="register-form__error-message">
                     @error('name')
                     {{ $message }}
@@ -20,8 +20,8 @@
                 </p>
             </div>
             <div class="register-form__group">
-                <label class="register-form__label" for="email">メールアドレス</label>
-                <input class="register-form__input" type="mail" name="email" id="email" placeholder="例：test@example.com">
+                <label class="register-form__label" for="email"></label>
+                <input class="register-form__input" type="mail" name="email" id="email" placeholder="メールアドレス">
                 <p class="register-form__error-message">
                     @error('email')
                     {{ $message }}
@@ -29,8 +29,8 @@
                 </p>
             </div>
             <div class="register-form__group">
-                <label class="register-form__label" for="password">パスワード</label>
-                <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coachtech1106">
+                <label class="register-form__label" for="password"></label>
+                <input class="register-form__input" type="password" name="password" id="password" placeholder="パスワード">
                 <p class="register-form__error-message">
                     @error('password')
                     {{ $message }}
@@ -38,10 +38,10 @@
                 </p>
             </div>
             <div class="register-form__group">
-                <label class="register-form__label" for="password">確認用パスワード</label>
-                <input class="register-form__input" type="password" name="password" id="password" placeholder="例：coachtech1106">
+                <label class="register-form__label" for="password"></label>
+                <input class="register-form__input" type="password" name="password" id="password" placeholder="確認用パスワード">
             </div>
-            <input class="register-form__btn btn" type="submit" value="登録">
+            <input class="register-form__btn btn" type="submit" value="会員登録">
         </form>
 
         <div class="register__content">

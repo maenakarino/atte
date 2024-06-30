@@ -16,15 +16,20 @@
             @yield('link')
         </div>
         <div class="header__right">
+            @if (Auth::check())
             <p class="header__right-heading">
                 <a class="header__item-link" href="/">ホーム</a>
             
             
                 <a class="header__item-link" href="/">日付一覧</a>
+
             
-            
+              <form class="form" action="/logout" method="post">
+                @csrf
                 <a class="header__item-link" href="/">ログアウト</a>
+              </form>
             </p>
+            @endif
         </div>
     </header>
 
