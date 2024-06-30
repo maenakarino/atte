@@ -15,3 +15,6 @@ use App\Http\Controllers\WorkController;
 */
 
 Route::get('/', [WorkController::class, 'index']);
+Route::post('/work/start', [WorkController::class, 'start']);
+Route::post('/work/end', [WorkController::class, 'end']);
+
