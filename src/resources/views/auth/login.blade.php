@@ -5,8 +5,10 @@
 @endsection
 
 @section('content')
-<div class="login-form">
-    <h2 class="login-form__heading content__heading">ログイン</h2>
+<div class="login__content">
+   <div class="login-form__heading">
+    <h2>ログイン</h2>
+   </div>
     <div class="login-form__inner">
         <form class="login-form__form" action="/login" method="post">
             @csrf

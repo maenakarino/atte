@@ -1,5 +1,16 @@
+.login-form__content {
+    margin: 0 auto;
+    padding: 30px 50px;
+    max-width: 1230px;
+}
 .login-form__heading {
-    justify-content: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content__heading {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .login-form__inner {
