@@ -16,7 +16,7 @@
     margin: auto;
 }
 
-.break__content {
+.rest__content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

@@ -1,54 +1,78 @@
-.register-form__inner {
-    display: flex;
-    justify-content: center;
-    margin-top: 48px;
+.register-form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
 }
 
-.register-form__form {
-    padding: 64px 96px;
-    width: 40vw;
-    border: 1px solid;
-    border-radius: 8px;
-}
-
-@media screen and (max-width: 1200px) {
-    .register-form__form {
-        width: 60vw;
-    }
-}
-
-.register-form__group {
-    margin-bottom: 32px;
-}
-
-.register-form__label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.register-form__input {
-    display: block;
-    padding: 8px 12px;
-    width: 100%;
-    height: 48px;
-    border: none;
-    background-color: #eee;
-    color: #BEB1A6;
-    font-family: serif;
-}
-
-.register-form__error-message {
-    color: #FF9494;
-}
-
-.register-form__btn {
-    margin: 60px auto 0;
-    background-color: blue;
-}
-
-.register__message {
+.register-form__heading {
+    margin-bottom: 20px;
     text-align: center;
-    padding: 15px;
-    background-color: rgb(38, 80, 207);
-    color: white;
+}
+
+.form {
+    margin: 0 auto;
+    width: 25%;
+    text-align: center;
+}
+
+.form__group {
+    margin-bottom: 5px;
+}
+
+.form__group-title {
+    text-align: left;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__input--text input {
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+
+    appearance: none;
+}
+
+.form__button {
+    margin-top: 20px;
+}
+
+.form__button-submit {
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background: blue;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login__link {
+    margin-top: 0px;
+    text-align: center;
+}
+
+.register__content {
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 20px;
+}
+
+.register__item-text {
+    margin: 0;
+    color: gray;
+    font-size: 10px;
+}
+
+.register__item-button {
+    font-size: 10px;
+    color: rgb(38, 81, 207);
+    text-decoration: none;
 }

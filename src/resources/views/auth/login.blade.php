@@ -1,48 +1,57 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
 @section('content')
 <div class="login__content">
-   <div class="login-form__heading">
+  <div class="login-form__heading">
     <h2>ログイン</h2>
-   </div>
-    <div class="login-form__inner">
-        <form class="login-form__form" action="/login" method="post">
-            @csrf
-            <div class="login-form__group">
-                <label class="login-form__label" for="email"></label>
-                <input class="login-form__input" type="mail" name="email" id="email" placeholder="メールアドレス">
-                <p class="register-form__error-message">
-                    @error('email')
-                    {{ $message }}
-                    @enderror
-                </p>
-            </div>
-            <div class="login-form__group">
-                <label class="login-form__label" for="password"></label>
-                <input class="login-form__input" type="password" name="password" id="password" placeholder="パスワード">
-                <p>
-                    @error('password')
-                    {{ $message }}
-                    @enderror
-                </p>
-            </div>
-            <input class="login-form__btn btn" type="submit" value="ログイン">
-        </form>
-
-        <div class="register__content">
-            <div class="register__item">
-                <p class="register__item-text">
-                    アカウントをお持ちでない方はこちらから
-                </p>
-            </div>
-            <div class="register__button">
-                <a class="register__item-button" href="/register">会員登録</a>
-            </div>
+  </div>
+  <form class="form" action="/login" method="post">
+    @csrf
+    <div class="form__group">
+      <div class="form__group-title">
+        <span class="form__label--item"></span>
+      </div>
+      <div class="form__group-content">
+        <div class="form__input--text">
+          <input type="email" name="email" placeholder="メールアドレス" value="{{ old('email') }}" />
         </div>
+        <div class="form__error">
+          @error('email')
+          {{ $message }}
+          @enderror
+        </div>
+      </div>
     </div>
+    <div class="form__group">
+      <div class="form__group-title">
+        <span class="form__label--item"></span>
+      </div>
+      <div class="form__group-content">
+        <div class="form__input--text">
+          <input type="password" name="password" placeholder="パスワード" />
+        </div>
+        <div class="form__error">
+          @error('password')
+          {{ $message }}
+          @enderror
+        </div>
+      </div>
+    </div>
+    <div class="form__button">
+      <button class="form__button-submit" type="submit">ログイン</button>
+    </div>
+  </form>
+  <div class="register__content">
+    <div class="register__item">
+        <p>アカウントをお持ちでない方はこちらから</p>
+    </div>
+  </div>
+  <div class="register__link">
+    <a class="register__button-submit" href="/register">会員登録</a>
+  </div>
 </div>
 @endsection

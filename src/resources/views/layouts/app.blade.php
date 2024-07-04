@@ -26,7 +26,7 @@
             
               <form class="form" action="/logout" method="post">
                 @csrf
-                <a class="header__item-link" href="/">ログアウト</a>
+                <button class="header-nav__button">ログアウト</button>
               </form>
             </p>
             @endif

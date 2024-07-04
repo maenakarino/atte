@@ -7,12 +7,12 @@
 @section('content')
 <div class="header__log">
     <p class="header__text">
-        〇〇さんお疲れ様です！
+        {{ \Auth::user()->name }}さんお疲れ様です！
     </p>
 </div>
 
 <div class="work__content">
-    <form class="work-form" action="" method="post">
+    <form class="work-form" action="/work/start" method="post">
         @csrf
         <div class="work-form__item">
             <button class="form__item-button" type="submit" name="work-start">勤務開始</button>
@@ -26,16 +26,16 @@
     </form>
 </div>
 
-<div class="break__content">
-    <form class="break-form" action="" mathod="post">
+<div class="rest__content">
+    <form class="rest-form" action="" mathod="post">
         @csrf
-        <div class="break-form__item">
-            <button class="form__item-button" type="submit" name="break-start">休憩開始</button>
+        <div class="rest-form__item">
+            <button class="form__item-button" type="submit" name="rest-start">休憩開始</button>
         </div>
     </form>
-    <form class="break-form" action="" method="post">
+    <form class="rest-form" action="" method="post">
         @csrf 
-        <div class="break-form__item">
+        <div class="rest-form__item">
             <button class="form__item-button" type="submit" name="break/end">休憩終了</button>
         </div>
     </form>

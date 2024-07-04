@@ -16,7 +16,9 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', [WorkController::class, 'index']);
+
 Route::post('/work/start', [WorkController::class, 'start']);
+
 Route::post('/work/end', [WorkController::class, 'end']);
 
 Route::middleware('auth')->group(function () {
