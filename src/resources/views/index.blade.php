@@ -15,10 +15,12 @@
     <form class="work-form" action="/work/start" method="post">
         @csrf
         <div class="work-form__item">
+            @if($status == 0)
             <button class="form__item-button" type="submit" name="work-start">勤務開始</button>
+            @endif
         </div>
     </form>
-    <form class="work-form" action="" method="post">
+    <form class="work-form" action="/work/end" method="post">
         @csrf
         <div class="work-form__item">
             <button class="form__item-button" type="submit" name="work-end">勤務終了</button>
@@ -27,16 +29,16 @@
 </div>
 
 <div class="rest__content">
-    <form class="rest-form" action="" mathod="post">
+    <form class="rest-form" action="rest/start" mathod="post">
         @csrf
         <div class="rest-form__item">
             <button class="form__item-button" type="submit" name="rest-start">休憩開始</button>
         </div>
     </form>
-    <form class="rest-form" action="" method="post">
+    <form class="rest-form" action="rest/end" method="post">
         @csrf 
         <div class="rest-form__item">
-            <button class="form__item-button" type="submit" name="break/end">休憩終了</button>
+            <button class="form__item-button" type="submit" name="rest-end">休憩終了</button>
         </div>
     </form>
 @endsection
