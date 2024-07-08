@@ -31,9 +31,6 @@ header {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: auto;
-    width: 500px;
-    margin-right: 50px;
-
 }
 
 .header__right-item {
@@ -51,6 +48,11 @@ header {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: auto;
+    background-color: white;
+}
+
+.header-nav__button__text {
+    background-color: #eee;
 }
 
 .footer__item {

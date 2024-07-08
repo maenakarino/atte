@@ -15,9 +15,7 @@
     <form class="work-form" action="/work/start" method="post">
         @csrf
         <div class="work-form__item">
-            @if($status == 0)
             <button class="form__item-button" type="submit" name="work-start">勤務開始</button>
-            @endif
         </div>
     </form>
     <form class="work-form" action="/work/end" method="post">
