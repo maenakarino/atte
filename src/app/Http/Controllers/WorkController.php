@@ -15,44 +15,71 @@ class WorkController extends Controller
 {
     public function index()
   {
+    $today = Carbon::today();
+    $month = intval($today->month);
+    $day = intval($today->day);
+
+    $items = Work::GetMonthAttendance($month)->GetDayAttendance($day)->get();
     return view('index');
   }
 
   public function start(Request $request)
   {
-    $now_date = Carbon::now()->format('Y-m-d');
+    $date = Carbon::now()->format('Y-m-d');
     $now_time = Carbon::now()->format('H:i:s');
     $user_id = Auth::user()->id;
-    if ($request->has('start_rest') || $request->has('end_rest')) {
-      $work_id = Work::where('user_id', $user_id)
-      ->where('date', $now_date)
-      ->first()
-      ->id;
-    }
+
+    $oldstart = Work::where('user_id',$user_id)->latest()->first();
+
+    $oldDay = '';
+    
     
 
-    if ($request->has('start')) {
-      $attendance = new Work();
-      $attendance->date = $now_date;
-      $attendance->start = $now_time;
-      $attendance->user_id = $user_id;
+    if ($oldstart) {
+      $oldWorkstart = new Carbon($oldstart->start);
+      $oldDay = $oldWorkstart->startOfDay();
+    }
+    $today = Carbon::today();
+
+    if(($oldDay == $today) && (empty($oldstart->end))) {
+      return redirect()->back()->with('message','出勤打刻済みです');
     }
 
-    return redirect('/work/start');
+    if($oldstart) {
+      $oldWorkend = new Carbon($oldstart->end);
+      $oldDay = $oldWorkend->startOfDay();
+    }
+
+    if(($oldDay == $today)) {
+      return redirect()->back()->with('message','退勤打刻済みです');
+    }
+
+    $month = intval($today->month);
+    $day = intval($today->day);
+    $year = intval($today->year);
+
+    $work = Work::create([
+      'user_id' => $user_id,
+      'date' => $date,
+      'start' => Carbon::now(),
+    ]);
+
+    return view('index');
   }
 
   public function end(Request $request)
   {
-    $user = Auth::user();
+    $user_id = Auth::user()->id;
+    $date = Carbon::now()->format('Y-m-d');
 
-    if ($request->has('end')) {
-      $attendance = Work::where('user_id', $user_id)
-      ->where('date', $now_date)
-      ->first();
-      $attendance->end = $now_time;
+    $oldend = Work::where('user_id',$user_id)->latest()->first();
+    
+    $work = Work::create([
+      'user_id' => $user_id,
+      'date' => $date,
+      'end' => Carbon::now(),
+    ]);
 
-    }
-
-    return redirect('/work/end');
+    return view('index');
   }
 }

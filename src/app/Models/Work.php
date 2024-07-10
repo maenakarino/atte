@@ -10,12 +10,13 @@ class Work extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'date',
         'start',
         'end',
     ];
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User');
     }
 }

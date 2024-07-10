@@ -49,6 +49,7 @@ header {
     flex-wrap: wrap;
     margin: auto;
     background-color: white;
+    color: inherit;
 }
 
 .header-nav__button__text {
