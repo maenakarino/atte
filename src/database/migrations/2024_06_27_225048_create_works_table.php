@@ -16,8 +16,10 @@ class CreateWorksTable extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->time('start');
-            $table->time('end');
+            $table->time('start')->nullable()->default(now());
+            $table->time('start')->nullable()->change();
+            $table->time('end')->nullable()->default(now());
+            $table->time('end')->nullable()->change();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
@@ -31,5 +33,12 @@ class CreateWorksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('works');
+
+        Schema::table('works', function (Blueprint $table) {
+            $table->timestamp('end')->nullable(false)->change();
+            $table->timestamp('start')->nullable(false)->change();
+            $table->dropColumn('start');
+            $table->dropColumn('end');
+        });
     }
 }

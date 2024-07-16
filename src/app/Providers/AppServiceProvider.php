@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (!Schema::hasColumn('works', 'end')) {
+            Schema::table('works', function ($table) {
+                $table->timestamp('end')->nullable();
+            });
+        }
     }
 }
+

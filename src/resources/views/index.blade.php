@@ -39,4 +39,5 @@
             <button class="form__item-button" type="submit" name="rest-end">休憩終了</button>
         </div>
     </form>
+</div>
 @endsection
