@@ -25,3 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
     });
 
+Route::get('/work/end', [WorkController::class, 'edit']);
+Route::post('/work/end', [WorkController::class, 'update']);

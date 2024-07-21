@@ -15,13 +15,22 @@
     <form class="work-form" action="/work/start" method="post">
         @csrf
         <div class="work-form__item">
+            
+            
             <button class="form__item-button" type="submit" name="work-start">勤務開始</button>
+            
+            
+            
         </div>
     </form>
     <form class="work-form" action="/work/end" method="post">
         @csrf
         <div class="work-form__item">
+            
             <button class="form__item-button" type="submit" name="work-end">勤務終了</button>
+           
+            
+            
         </div>
     </form>
 </div>
@@ -30,13 +39,21 @@
     <form class="rest-form" action="rest/start" mathod="post">
         @csrf
         <div class="rest-form__item">
+            
             <button class="form__item-button" type="submit" name="rest-start">休憩開始</button>
+            
+            <button class="form__item-button" type="submit" name="rest-start" disabled>休憩開始</button>
+            
         </div>
     </form>
     <form class="rest-form" action="rest/end" method="post">
         @csrf 
         <div class="rest-form__item">
+            
             <button class="form__item-button" type="submit" name="rest-end">休憩終了</button>
+            
+            <button class="form__item-button" type="submit" name="rest-end" disabled>休憩終了</button>
+            
         </div>
     </form>
 </div>

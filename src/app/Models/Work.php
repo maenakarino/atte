@@ -19,4 +19,8 @@ class Work extends Model
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function rests() {
+        return $this->hasMany(Rest::class, 'work_id');
+    }
 }

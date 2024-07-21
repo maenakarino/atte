@@ -17,12 +17,13 @@ class WorkController extends Controller
   {
     $date = Carbon::now()->format('Y-m-d');
     $user_id = Auth::user()->id;
+    $status = Auth::user()->status;
     $confirm_date = Work::where('user_id', $user_id)
     ->where('date', $date)
     ->first();
   
     if (!$confirm_date) {
-      $status = 0;
+      $status =0;
     } else {
       $status = Auth::user()->status;
     }
@@ -40,19 +41,19 @@ class WorkController extends Controller
     $oldDay = '';
 
 
-    if ($request->has('start_time') || $request->has('end_time')) {
+    if ($request->has('rest_start') || $request->has('rest_end')) {
       $work_id = Work::where('user_id', $user_id)
       ->where('date', $date)
       ->first()
       ->id;
     }
     //勤務開始
-    if ($request->has('start_time')) {
+    if ($request->has('work_start')) {
       $work = new Work();
       $work->date = $request->date;
-      $work->start = $request->start ?? null;
-      $work->end = $request->end ?? null;
-      $work->user_id = $request->user();
+      $work->start = $now_time;
+      $work->end = $now_time;
+      $work->user_id = $user_id;
       $status = 1;
     }
 
@@ -71,10 +72,9 @@ class WorkController extends Controller
 
     return view('index');
   }
-
   
 
-  public function end(Request $request)
+  public function update(Request $request)
   {
     $user_id = Auth::user()->id;
     $date = Carbon::now()->format('Y-m-d');
@@ -88,18 +88,24 @@ class WorkController extends Controller
     ]);
 
     //勤務終了
-    if ($request->has('end_time')) {
+    if ($request->has('work_end')) {
       $work = Work::where('user_id', $user_id)
       ->where('date', $date)
       ->first();
-      $work->end = $request->end ?? null;
-      $work->start = $request->start ?? null;
+      $work->end = $now_time;
+      $work->start = $now_time;
       $status = 1;
     }
     
 
-    
-
     return view('index');
   }
+
+  public function edit(Request $request)
+  {
+    $work = Work::find($request->user_id, date);
+    return view('edit', ['form' => $work]);
+  }
+
+  
 }
