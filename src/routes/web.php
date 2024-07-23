@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
     });
 
-Route::get('/work/end', [WorkController::class, 'edit']);
 Route::post('/work/end', [WorkController::class, 'update']);
+
+Route::post('/rest/start', [RestController::class, 'start']);
+Route::post('/rest/end', [RestController::class, 'end']);

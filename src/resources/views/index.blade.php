@@ -15,22 +15,21 @@
     <form class="work-form" action="/work/start" method="post">
         @csrf
         <div class="work-form__item">
-            
-            
-            <button class="form__item-button" type="submit" name="work-start">勤務開始</button>
-            
-            
-            
+            @if($status == 0)
+            <button class="form__item-button" type="submit" name="work_start">勤務開始</button>
+            @else
+            <button class="form__item-button" type="submit" name="work_start" disabled>勤務開始</button>
+            @endif
         </div>
     </form>
     <form class="work-form" action="/work/end" method="post">
         @csrf
         <div class="work-form__item">
-            
-            <button class="form__item-button" type="submit" name="work-end">勤務終了</button>
-           
-            
-            
+            @if($status == 1)
+            <button class="form__item-button" type="submit" name="work_end">勤務終了</button>
+            @else
+            <button class="form__item-button" type="submit" name="work_end" disabled>勤務終了</button>
+            @endif
         </div>
     </form>
 </div>
@@ -39,21 +38,21 @@
     <form class="rest-form" action="rest/start" mathod="post">
         @csrf
         <div class="rest-form__item">
-            
-            <button class="form__item-button" type="submit" name="rest-start">休憩開始</button>
-            
-            <button class="form__item-button" type="submit" name="rest-start" disabled>休憩開始</button>
-            
+            @if($status == 1)
+            <button class="form__item-button" type="submit" name="rest_start">休憩開始</button>
+            @else
+            <button class="form__item-button" type="submit" name="rest_start" disabled>休憩開始</button>
+            @endif
         </div>
     </form>
     <form class="rest-form" action="rest/end" method="post">
         @csrf 
         <div class="rest-form__item">
-            
-            <button class="form__item-button" type="submit" name="rest-end">休憩終了</button>
-            
-            <button class="form__item-button" type="submit" name="rest-end" disabled>休憩終了</button>
-            
+            @if($status == 2)
+            <button class="form__item-button" type="submit" name="rest_end">休憩終了</button>
+            @else
+            <button class="form__item-button" type="submit" name="rest_end" disabled>休憩終了</button>
+            @endif
         </div>
     </form>
 </div>

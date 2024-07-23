@@ -23,13 +23,13 @@ class WorkController extends Controller
     ->first();
   
     if (!$confirm_date) {
-      $status =0;
+      $status = 0;
     } else {
       $status = Auth::user()->status;
     }
 
     
-    return view('index');
+    return view('index', compact('status'));
   }
 
   public function start(Request $request)
@@ -75,37 +75,39 @@ class WorkController extends Controller
   
 
   public function update(Request $request)
-  {
-    $user_id = Auth::user()->id;
-    $date = Carbon::now()->format('Y-m-d');
+    {
+        $user_id = Auth::user()->id;
+        $date = Carbon::now()->format('Y-m-d');
 
-    $oldend = Work::where('user_id',$user_id)->latest()->first();
-    
-    $work = Work::create([
-      'user_id' => $user_id,
-      'date' => $date,
-      'end' => Carbon::now(),
-    ]);
+        // 最新のWorkレコードを取得
+        $work = Work::where('user_id', $user_id)->where('date', $date)->first();
 
-    //勤務終了
-    if ($request->has('work_end')) {
-      $work = Work::where('user_id', $user_id)
-      ->where('date', $date)
-      ->first();
-      $work->end = $now_time;
-      $work->start = $now_time;
-      $status = 1;
+        // 勤務終了
+        if ($request->has('work_end')) {
+            // レコードが存在するかチェック
+            if ($work) {
+                $work->end = $request->input('end', Carbon::now());
+                $work->start = $request->input('start', $work->start);
+                $work->save();
+                $status = 2;
+            } else {
+                return response()->json(['message' => 'Work record not found'], 404);
+            }
+        } else {
+            // 新しいWorkレコードを作成
+            $work = Work::create([
+                'user_id' => $user_id,
+                'date' => $date,
+                'end' => Carbon::now(),
+            ]);
+        }
+
+        $user = User::find($user_id);
+        $user->save();
+
+
+        return redirect('/');
     }
-    
-
-    return view('index');
-  }
-
-  public function edit(Request $request)
-  {
-    $work = Work::find($request->user_id, date);
-    return view('edit', ['form' => $work]);
-  }
 
   
 }
