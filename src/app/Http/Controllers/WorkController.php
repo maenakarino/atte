@@ -21,13 +21,13 @@ class WorkController extends Controller
     ->where('date', $date)
     ->first();
   
-    if ($confirm_date) {
+    if ($confirm_date || $request->has('work_start')) {
       return view('index');
     } else {
-      return view('index');
+      
     }
 
-    if ($request->update) {
+    if ($request->has('work_start') || $request->has('rest_end')) {
       return view('index');
 
     } else {
@@ -40,11 +40,7 @@ class WorkController extends Controller
       return view('index');
     }
 
-    if ($request->end) {
-      return view('index');
-    } else {
-      return view('index');
-    }
+    
 
     
   }
