@@ -15,7 +15,7 @@
     <form class="work-form" action="/work/start" method="post">
         @csrf
         <div class="work-form__item">
-            @if($status == 0)
+            @if(\Auth::user()->id)
             <button class="form__item-button" type="submit" name="work_start">勤務開始</button>
             @else
             <button class="form__item-button" type="submit" name="work_start" disabled>勤務開始</button>
@@ -25,7 +25,7 @@
     <form class="work-form" action="/work/end" method="post">
         @csrf
         <div class="work-form__item">
-            @if($status == 1)
+            @if(\Request::has('work_end'))
             <button class="form__item-button" type="submit" name="work_end">勤務終了</button>
             @else
             <button class="form__item-button" type="submit" name="work_end" disabled>勤務終了</button>
@@ -38,7 +38,7 @@
     <form class="rest-form" action="rest/start" mathod="post">
         @csrf
         <div class="rest-form__item">
-            @if($status == 1)
+            @if(\Request::is('start'))
             <button class="form__item-button" type="submit" name="rest_start">休憩開始</button>
             @else
             <button class="form__item-button" type="submit" name="rest_start" disabled>休憩開始</button>
@@ -48,7 +48,7 @@
     <form class="rest-form" action="rest/end" method="post">
         @csrf 
         <div class="rest-form__item">
-            @if($status == 2)
+            @if(\Request::is('end'))
             <button class="form__item-button" type="submit" name="rest_end">休憩終了</button>
             @else
             <button class="form__item-button" type="submit" name="rest_end" disabled>休憩終了</button>

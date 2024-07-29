@@ -17,53 +17,43 @@ class WorkController extends Controller
   {
     $date = Carbon::now()->format('Y-m-d');
     $user_id = Auth::user()->id;
-    $status = Auth::user()->status;
     $confirm_date = Work::where('user_id', $user_id)
     ->where('date', $date)
     ->first();
   
-    if (!$confirm_date) {
-      $status = 0;
+    if ($confirm_date) {
+      return view('index');
     } else {
-      $status = Auth::user()->status;
+      return view('index');
+    }
+
+    if ($request->update) {
+      return view('index');
+
+    } else {
+      return view('index');
+    }
+
+    if ($request->start) {
+      return view('index');
+    } else {
+      return view('index');
+    }
+
+    if ($request->end) {
+      return view('index');
+    } else {
+      return view('index');
     }
 
     
-    return view('index', compact('status'));
   }
 
   public function start(Request $request)
   {
     $date = Carbon::now()->format('Y-m-d');
-    $now_time = Carbon::now()->format('H:i:s');
     $user_id = Auth::user()->id;
-    $oldstart = Work::where('user_id', $user_id)->latest()->first();
-    $oldDay = '';
-
-
-    if ($request->has('rest_start') || $request->has('rest_end')) {
-      $work_id = Work::where('user_id', $user_id)
-      ->where('date', $date)
-      ->first()
-      ->id;
-    }
-    //勤務開始
-    if ($request->has('work_start')) {
-      $work = new Work();
-      $work->date = $request->date;
-      $work->start = $now_time;
-      $work->end = $now_time;
-      $work->user_id = $user_id;
-      $status = 1;
-    }
-
-    $today = Carbon::today();
     
-
-    $month = intval($today->month);
-    $day = intval($today->day);
-    $year = intval($today->year);
-
     $work = Work::create([
       'user_id' => $user_id,
       'date' => $date,
