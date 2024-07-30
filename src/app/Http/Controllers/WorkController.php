@@ -24,7 +24,7 @@ class WorkController extends Controller
     if ($confirm_date || $request->has('work_start')) {
       return view('index');
     } else {
-      
+      return view('index');
     }
 
     if ($request->has('work_start') || $request->has('rest_end')) {
@@ -75,9 +75,8 @@ class WorkController extends Controller
                 $work->end = $request->input('end', Carbon::now());
                 $work->start = $request->input('start', $work->start);
                 $work->save();
-                $status = 2;
             } else {
-                return response()->json(['message' => 'Work record not found'], 404);
+                return view('index');
             }
         } else {
             // 新しいWorkレコードを作成
@@ -87,9 +86,6 @@ class WorkController extends Controller
                 'end' => Carbon::now(),
             ]);
         }
-
-        $user = User::find($user_id);
-        $user->save();
 
 
         return redirect('/');

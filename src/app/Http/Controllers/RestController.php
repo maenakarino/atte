@@ -13,47 +13,63 @@ use Illuminate\Support\Carbon;
 
 class RestController extends Controller
 {
-    public function start(Request $request)
+    public function index()
     {
         $date = Carbon::now()->format('Y-m-d');
-        $now_time = Carbon::now()->format('H:i:s');
         $user_id = Auth::user()->id;
-        $oldstart = Rest::where('user_id', $user_id)->latest()->first();
-        $oldDay = '';
-
-        if ($request->has('rest_start') || $request->has('rest_end')) {
-         $work_id = Rest::where('user_id', $user_id)
-         ->where('date', $date)
-         ->first()
-         ->id;
-        }
-
-        //休憩開始
-        if ($request->has('rest_start')) {
-            $rest = new Rest();
-            $rest->date = $request->date;
-            $rest->start = $now_time;
-            $rest->end = $now_time;
-            $rest->user_id = $user_id;
-            $status = 2;
-        }
-
-        $user = User::find($user_id);
-        $user->status = $status;
-        $user->save();
-
-        $rest->save();
+        $confirm_date = Work::where('user_id', $user_id)
+        ->where('date', $date)
+        ->first();
 
         return view('index');
+    }
+
+    public function update(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $date = Carbon::now()->format('Y-m-d');
+
+        if ($request->has('rest_start') || $request->has('rest_end')) {
+            $work_id = Rest::where('user_id', $user_id)
+                ->where('date', $date)
+                ->first()
+                ->id;
+        }
+
+        // 最新のrestレコードを取得
+        $rest = Rest::where('user_id', $user_id)->where('date', $date)->first();
+
+        // 休憩開始
+        if ($request->has('rest_start')) {
+            // レコードが存在するかチェック
+            if ($rest) {
+                $rest->start = $request->input('start', Carbon::now());
+                $rest->end = $request->input('end', $rest->end);
+                $rest->save();
+            } else {
+                return view('index');
+            }
+        } else {
+            // 新しいrestレコードを作成
+            $rest = Rest::create([
+                'user_id' => $user_id,
+                'date' => $date,
+                'start' => Carbon::now(),
+            ]);
+        }
+
+        $rest = $request->only(['start']);
+        Rest::find($request->id)->update($rest);
+
+
+        return view('/rest/update');
     }
 
     public function end(Request $request)
     {
         $date = Carbon::now()->format('Y-m-d');
-        $now_time = Carbon::now()->format('H:i:s');
         $user_id = Auth::user()->id;
-        $oldstart = Rest::where('user_id', $user_id)->latest()->first();
-        $oldDay = '';
+        
 
         //休憩終了
         if ($request->has('rest_end')) {

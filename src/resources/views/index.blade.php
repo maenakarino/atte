@@ -35,7 +35,8 @@
 </div>
 
 <div class="rest__content">
-    <form class="rest-form" action="rest/start" mathod="post">
+    <form class="rest-form" action="rest/update" mathod="post">
+        @method('PATCH')
         @csrf
         <div class="rest-form__item">
             @if(\Request::has('work_start') || \Request::has('rest_end'))

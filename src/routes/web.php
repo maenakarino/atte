@@ -20,7 +20,6 @@ Route::get('/', [WorkController::class, 'index']);
 
 Route::post('/work/start', [WorkController::class, 'start']);
 
-Route::post('/work/end', [Work2Controller::class, 'end']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
@@ -28,5 +27,5 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/work/end', [WorkController::class, 'update']);
 
-Route::post('/rest/start', [RestController::class, 'start']);
+Route::patch('/rest/update', [RestController::class, 'update']);
 Route::post('/rest/end', [RestController::class, 'end']);
