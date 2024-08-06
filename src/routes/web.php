@@ -25,10 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
     });
 
-Route::post('/work/end', [WorkController::class, 'update']);
+Route::post('/work/end', [WorkController::class, 'end']);
 
 Route::post('/rest/start', [RestController::class, 'start']);
-Route::post('/rest/end', [RestController::class, 'update']);
+Route::post('/rest/end', [RestController::class, 'end']);
 
 Route::get('/attendance', [WorkController::class, 'show']);
 

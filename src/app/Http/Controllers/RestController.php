@@ -20,28 +20,24 @@ class RestController extends Controller
         $work_id = Work::work()->id;
         $date = Carbon::now()->format('Y-m-d');
 
-
+        if ($request->has('rest_start') || $request->has('rest_end')) {
+            $work_id = Rest::where('user_id', $user_id)
+                ->where('date', $date)
+                ->first()
+                ->id;
+        }
+        
         // 最新のrestレコードを取得
         $rest = Rest::where('work_id', $work_id)->where('date', $date)->first();
 
         // 休憩開始
         if ($request->has('rest_start')) {
-            // レコードが存在するかチェック
-            if ($rest) {
-                $rest->start = $request->input('start', Carbon::now());
-                $rest->end = $request->input('end', $rest->end);
-                $rest->save();
-            } 
-        } else {
-            // 新しいWorkレコードを作成
-            $rest = Rest::create([
-                'work_id' => $work_id,
-                'date' => $date,
-                'start' => Carbon::now(),
-            ]);
+            $rest = new Rest();
+            $rest->start = $date;
+            $rest->work_id = $work_id;
         }
 
-        return view('index', compact('rest'));
+        return view('index');
     }
 
     public function end(Request $request)

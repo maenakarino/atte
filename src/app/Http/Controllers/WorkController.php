@@ -22,27 +22,8 @@ class WorkController extends Controller
     ->where('date', $date)
     ->first();
   
-    if ($confirm_date || $request->has('work_start')) {
-      return view('index');
-    } else {
-      return view('index');
-    }
-
-    if ($request->has('work_start') || $request->has('rest_end')) {
-      return view('index');
-
-    } else {
-      return view('index');
-    }
-
-    if ($request->start) {
-      return view('index');
-    } else {
-      return view('index');
-    }
-
     
-
+      return view('index');
     
   }
 
@@ -58,15 +39,11 @@ class WorkController extends Controller
       'start' => Carbon::now(),
     ]);
 
-    $user = User::find($user_id);
-    $user->save();
-    $work->save();
-
     return view('index');
   }
   
 
-  public function update(Request $request)
+  public function end(Request $request)
     {
 
         $user_id = Auth::user()->id;
@@ -112,12 +89,15 @@ class WorkController extends Controller
             ->paginate(5);
 
       $userList = User::all();
+      $users = User::all();
+      $works = Work::all();
+      $rests = Rest::all();
 
       $users = DB::table('works')
             ->where('start', $displayUser)
             ->paginate(5);
 
-      return view('attendance', compact('users', 'displayDate'));
+      return view('attendance', compact('users', 'displayDate', 'displayUser', 'userList'));
     }
 
   
