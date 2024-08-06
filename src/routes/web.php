@@ -27,5 +27,8 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/work/end', [WorkController::class, 'update']);
 
-Route::patch('/rest/update', [RestController::class, 'update']);
-Route::post('/rest/end', [RestController::class, 'end']);
+Route::post('/rest/start', [RestController::class, 'start']);
+Route::post('/rest/end', [RestController::class, 'update']);
+
+Route::get('/attendance', [WorkController::class, 'show']);
+

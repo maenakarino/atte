@@ -10,6 +10,7 @@ use App\Models\Rest;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Pagination\Paginator;
 
 class WorkController extends Controller
 {
@@ -47,6 +48,7 @@ class WorkController extends Controller
 
   public function start(Request $request)
   {
+    
     $date = Carbon::now()->format('Y-m-d');
     $user_id = Auth::user()->id;
     
@@ -56,12 +58,17 @@ class WorkController extends Controller
       'start' => Carbon::now(),
     ]);
 
+    $user = User::find($user_id);
+    $user->save();
+    $work->save();
+
     return view('index');
   }
   
 
   public function update(Request $request)
     {
+
         $user_id = Auth::user()->id;
         $date = Carbon::now()->format('Y-m-d');
 
@@ -75,9 +82,7 @@ class WorkController extends Controller
                 $work->end = $request->input('end', Carbon::now());
                 $work->start = $request->input('start', $work->start);
                 $work->save();
-            } else {
-                return view('index');
-            }
+            } 
         } else {
             // 新しいWorkレコードを作成
             $work = Work::create([
@@ -86,9 +91,33 @@ class WorkController extends Controller
                 'end' => Carbon::now(),
             ]);
         }
-
+        
 
         return redirect('/');
+    }
+
+    public function show(Request $request)
+    {
+      $displayDate = Carbon::now();
+
+      $items = Work::paginate(5);
+
+      $users = DB::table('works')
+            ->whereDate('date', $displayDate)
+            ->paginate(5);
+
+      $displayUser = Auth::user()->name;
+      $users = DB::table('users')
+            ->where('name', $displayUser)
+            ->paginate(5);
+
+      $userList = User::all();
+
+      $users = DB::table('works')
+            ->where('start', $displayUser)
+            ->paginate(5);
+
+      return view('attendance', compact('users', 'displayDate'));
     }
 
   

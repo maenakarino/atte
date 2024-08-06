@@ -21,7 +21,7 @@
                 <a class="header__item-link" href="/">ホーム</a>
             
             
-                <a class="header__item-link" href="/">日付一覧</a>
+                <a class="header__item-link" href="/attendance">日付一覧</a>
 
             
               <form class="form" action="/logout" method="post">
