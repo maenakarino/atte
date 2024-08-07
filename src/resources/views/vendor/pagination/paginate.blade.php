@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/pagination/paginate.css">
+<link rel="stylesheet" href="/css/paginate.css">
 
 @if ($paginator->hasPages())
 <div class="pagination__wrap">
