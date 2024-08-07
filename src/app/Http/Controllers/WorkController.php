@@ -77,27 +77,33 @@ class WorkController extends Controller
     {
       $displayDate = Carbon::now();
 
-      $items = Work::paginate(5);
-
       $users = DB::table('works')
             ->whereDate('date', $displayDate)
             ->paginate(5);
+
+      $displayDate = Carbon::parse($request->input('displayDate'));
+
+      if ($request->has('prevDate')) {
+            $displayDate->subDay();
+        }
+
+      if ($request->has('nextDate')) {
+            $displayDate->addDay();
+        }
 
       $displayUser = Auth::user()->name;
       $users = DB::table('users')
             ->where('name', $displayUser)
             ->paginate(5);
-
       $userList = User::all();
-      $users = User::all();
-      $works = Work::all();
-      $rests = Rest::all();
 
-      $users = DB::table('works')
-            ->where('start', $displayUser)
-            ->paginate(5);
+      $users = DB::table('works')->select('user_id', 'start', 'end', 'date')->get();
+      $users = DB::table('users')->select('name')->get();
 
-      return view('attendance', compact('users', 'displayDate', 'displayUser', 'userList'));
+      $users = User::paginate(5);
+      $displayDate = Carbon::now();
+
+      return view('attendance',  compact('users', 'displayDate', 'displayUser', 'userList'));
     }
 
   

@@ -31,7 +31,7 @@
 </div>
 
 <div class="rest__content">
-    <form class="rest-form" action="rest/start" mathod="post">
+    <form class="rest-form" action="/rest/start" mathod="post">
         @csrf
         <div class="rest-form__item">
            
@@ -39,7 +39,7 @@
             
         </div>
     </form>
-    <form class="rest-form" action="rest/end" method="post">
+    <form class="rest-form" action="/rest/end" method="post">
         @csrf 
         <div class="rest-form__item">
             
