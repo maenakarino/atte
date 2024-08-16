@@ -3,7 +3,7 @@
 ## 環境構築
 
  ### Dockerビルド
- 1、git clone
+ 1、[git clone](https://github.com/maenakarino/atte)
  
  2、docker-compose up -d --build
 
