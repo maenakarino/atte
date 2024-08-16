@@ -31,7 +31,7 @@
 
 
 ## ER図
- ![ER](atte ER.png)
+ ![ER](./atte ER.png)
 
 ## URL
  ・開発環境：http://localhost/
