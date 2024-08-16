@@ -1,6 +1,6 @@
-#勤怠管理システム
+#　勤怠管理システム
 
-##環境構築
+##　環境構築
 
 　Dockerビルド
  1、git clone
@@ -14,10 +14,11 @@
  5、php artisan migrate
  6、php artisan db:seed
 
-##使用技術
+##　使用技術
 　・php 8.0
  ・Laravel 10.0
  ・MySQL　8.0
+ 
  
  
  
