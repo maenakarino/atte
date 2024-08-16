@@ -28,6 +28,8 @@
  ・MySQL　8.0
 
 ## テーブル設計
+ ![usersテーブル](https://github.com/user-attachments/assets/863e9f55-128a-486d-b2f4-00fa803a57b1)
+
 
 
 ## ER図
