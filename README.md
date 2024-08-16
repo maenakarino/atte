@@ -30,6 +30,9 @@
 ## テーブル設計
  ![usersテーブル](https://github.com/user-attachments/assets/863e9f55-128a-486d-b2f4-00fa803a57b1)
 
+ ![worksテーブル](https://github.com/user-attachments/assets/f883a11c-41b0-4c53-8598-f7bb15d9d49a)
+
+
 
 
 ## ER図
