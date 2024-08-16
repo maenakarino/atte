@@ -26,6 +26,18 @@
  ・Laravel 10.0
  
  ・MySQL　8.0
+
+## テーブル設計
+
+
+## ER図
+
+
+## URL
+ ・開発環境：http://localhost/
+
+ ・php MyAdmin :http://localhost:8080/
+
  
  
  
